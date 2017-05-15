@@ -1,7 +1,5 @@
-## Laboratório 5
+## Laboratório 6
 ###### por [Natália Azevedo de Brito](https://github.com/bnatalha)
-
-Só o __Programa 1__ foi concluído.
 
 ### Compilando:
 
