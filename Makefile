@@ -5,10 +5,9 @@
 # - - - - - - - - - - - - - - - - - - - -
 
 # Compilation flags
-CPPFLAGS += -Wall -ansi -std=c++11 -pedantic -O0
-
+#CPPFLAGS += -Wall -ansi -std=c++11 -pedantic -O0
 # For debugging
-#CPPFLAGS += -Wall -ansi -std=c++11 -pedantic -O0 -g
+CPPFLAGS += -Wall -ansi -std=c++11 -pedantic -O0 -g
 
 # include directory
 INC =-I include

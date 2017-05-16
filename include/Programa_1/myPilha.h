@@ -54,10 +54,7 @@ class myPilha
 	*/
 	~myPilha()
 	{
-		for (int i = 0; i < capacidade; ++i)
-			pilha[i].~T();
-
-		delete[] pilha;
+		delete[] this->pilha;
 	}
 
 	// ================================================ Metodos

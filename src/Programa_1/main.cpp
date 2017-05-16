@@ -62,7 +62,7 @@ int main(int argc, char const *argv[])
 	B.push('b');
 
 	C.push(A);
-	C.push(myPilha<int>(40));
+	//C.push(myPilha<int>(40));
 
 
 	return 0;
