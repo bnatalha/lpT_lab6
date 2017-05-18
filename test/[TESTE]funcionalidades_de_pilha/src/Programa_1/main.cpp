@@ -30,9 +30,9 @@ int main(int argc, char const *argv[])
 	// Criando pilhas
 	cout << "Creating stacks A, B..."; 
 	myPilha<int> A;	// capacidade: padrão (2)
-	myPilha<char> B; // capacidade: padrão (2)
+	myPilha<char> B;	// capacidade: padrão (2)
 	cout << "Done" << endl;
-	
+
 	// Testes com pilhas vazias
 	cout << "A is" << (A.empty()? "":" not") << " empty." << endl;
 	cout << "B is" << (B.empty()? "":" not") << " empty." << endl;
