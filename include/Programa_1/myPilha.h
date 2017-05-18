@@ -54,7 +54,7 @@ class myPilha
 	*/
 	~myPilha()
 	{
-		delete[] this->pilha;
+		delete[] pilha;
 	}
 
 	// ================================================ Metodos
