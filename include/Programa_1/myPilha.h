@@ -21,7 +21,7 @@ class myPilha
 {
 	//atributos privados
 	private:
-	static const int capacidade_padrao = 2;	/**< Capacidade padrão (para caso nenhum capacidade seja passada inicialmente para o construtor)*/
+	static const int capacidade_padrao = 50;	/**< Capacidade padrão (para caso nenhum capacidade seja passada inicialmente para o construtor)*/
 	int tamanho;	/**< Quantitade de elementos na pilha */
 	int capacidade;	/**< Capacidade da pilha */
 	T *pilha = NULL;	/**< Arranjo que será alocado dinamicamente para guardar os elementos da pilha */

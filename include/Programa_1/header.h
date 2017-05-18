@@ -15,4 +15,8 @@ using std::cin;
 using std::cerr;
 using std::endl;
 
+#include <string>
+
+using std::string;
+
 #endif

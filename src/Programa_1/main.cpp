@@ -8,84 +8,22 @@
 
 #include "header.h"
 #include "myPilha.h"
-
-/*! \mainpage My Personal Index Page
-*
-* \section intro_sec Introduction
-*
-* This is the introduction.
-*
-* \section install_sec Installation
-*
-* \subsection step1 Step 1: Opening the box
-*
-* etc...
-*/
+#include "palindromo.h"
 
 /**
-* @brief Executa teste em myPilha
+* @brief Despreza 'ç'
 */
 int main(int argc, char const *argv[])
 {
-	// Criando pilhas
-	cout << "Creating stacks A, B..."; 
-	myPilha<int> A;	// capacidade: padrão (2)
-	myPilha<char> B; // capacidade: padrão (2)
-	cout << "Done" << endl;
-	
-	// Testes com pilhas vazias
-	cout << "A is" << (A.empty()? "":" not") << " empty." << endl;
-	cout << "B is" << (B.empty()? "":" not") << " empty." << endl;
-	cout << "--" << endl;
+	// pega string
+	string str("Socorram-me, SUBI NO ONIBUS EM MARROCOS");
+	// chama func palindromo
+	limpaString(&str);	// !! Corrigir para por referência
 
-	// Testando push
-	cout << "Testing push():" << endl;
-	int a = 1;
-	char b = 'a';
+	cout << str << endl;
 
-	A.push(a);
-	cout << "A's top element is " << A.top() << endl;
-	cout << "Current size:" << A.size() << endl;
-	A.push(2);
-	cout << "A's top element is " << A.top() << endl;
-	cout << "Current size:" << A.size() << endl;
-//	A.push(3);	// exceeding capacity
-//	cout << "A's top element is " << A.top() << endl;
-//	cout << "Current size:" << A.size() << endl;
-
-	B.push(b);
-	cout << "B's top element is " << B.top() << endl;
-	cout << "Current size:" << B.size() << endl;
-	B.push('b');
-	cout << "B's top element is " << B.top() << endl;
-	cout << "Current size:" << B.size() << endl;
-
-	cout << "-" << endl;
-
-	// Testanto Construtor myPilha(myPilha)
-	cout << "Creating stacks C from stack A..."; 
-	myPilha<int> C(A);
-
-	// Testando pop
-	cout << "Testing pop():" << endl;
-	for (int i = 0; i <= C.size(); ++i)
-	{
-		cout << "C's top element is " << C.top() << endl;
-		cout << "Current size:" << C.size() << endl;
-		C.pop();
-		cout << "popping.." << endl;
-	}
-
-	cout << endl;
-
-	// Testando pop
-	for (int i = 0; i < 2; ++i)
-	{
-		cout << "A's top element is " << A.top() << endl;
-		cout << "Current size:" << A.size() << endl;
-		A.pop();
-		cout << "popping.." << endl;
-	}
+	// diz se é ou nao é palindromo
+	cout << ( palindromo(str) ? "é":"não é" )<< " palíndromo." << endl;
 
 	cout << "Fim." << endl;
 	return 0;
