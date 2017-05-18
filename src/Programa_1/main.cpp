@@ -31,7 +31,7 @@ int main(int argc, char const *argv[])
 	cout << "Creating stacks A, B and C..."; 
 	myPilha<int> A;	// capacidade: padrão (2)
 	myPilha<char> B(3);	// capacidade: 3
-	myPilha<myPilha<int>> C;
+//	myPilha<myPilha<int>> C;
 	cout << "Done" << endl;
 
 	// Testes com pilhas vazias
@@ -40,6 +40,7 @@ int main(int argc, char const *argv[])
 	cout << "--" << endl;
 
 	// Testando push
+	cout << "Testing push():" << endl;
 	int a = 1;
 	char b = 'a';
 
@@ -61,8 +62,21 @@ int main(int argc, char const *argv[])
 	cout << "Current size:" << B.size() << endl;
 	B.push('b');
 
-	C.push(A);
+	cout << "-" << endl;
+
+	// Testando pop
+	cout << "Testing pop():" << endl;
+	for (int i = 0; i < 2; ++i)
+	{
+		cout << "A's top element is " << A.top() << endl;
+		cout << "Current size:" << A.size() << endl;
+		A.pop();
+		cout << "popping.." << endl;
+	}
+
+//	C.push(A);
 	//C.push(myPilha<int>(40));
+
 
 
 	return 0;

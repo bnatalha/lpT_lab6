@@ -54,7 +54,7 @@ class myPilha
 	*/
 	~myPilha()
 	{
-		delete[] this->pilha;
+		delete[] pilha;
 	}
 
 	// ================================================ Metodos
@@ -99,7 +99,7 @@ T& myPilha<T>::top()
 {
 	if (empty())
 	{
-		cerr << "Não há elementos na pilha elementos de uma pilha de tamanho '"<< tamanho << "'." << endl;
+		cerr << "top(): Não há elementos na pilha (tamanho: "<< tamanho << ")." << endl;
 		exit(1);
 	}
 	//else
@@ -115,7 +115,7 @@ void myPilha<T>::push(const T& element)
 {
 	if(tamanho == capacidade)
 	{
-		cerr << "A capacidade da pilha já foi atingida "
+		cerr << "push(): A capacidade da pilha já foi atingida "
 			<< "(tamanho :"<< tamanho << ", capacidade:" << capacidade << ")." << endl;
 		exit(1);
 	}
@@ -129,7 +129,7 @@ void myPilha<T>::pop()
 {
 	if (empty())
 	{
-		cerr << "Não pode remover elementos de uma pilha de tamanho '"<< tamanho << "'." << endl;
+		cerr << "pop(): Não pode remover elementos de uma pilha de tamanho '"<< tamanho << "'." << endl;
 		exit(1);
 	}
 	//else
