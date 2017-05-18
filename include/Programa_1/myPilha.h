@@ -32,19 +32,23 @@ class myPilha
 	/**
 	* @brief Constroi um objeto myPilha sem passar atributos.
 	*/
-	myPilha() : tamanho(0), capacidade(capacidade_padrao)
-	{
-		// ABAIXO: testar para alocar?
-		pilha = new T[capacidade];
-	}
+	myPilha()
+		: tamanho(0), capacidade(capacidade_padrao), pilha(new T[capacidade])
+	{} //!EXTRA!: tratamento de exceção na alocação dinâmica ()
 
 	/**
-	* @brief Constroi um objeto myPilha com uma capacidade definida pelo usuário
+	* @brief Constroi um objeto myPilha  partir de uma pilha já definida pelo usuário
 	* @param size Será a capacidade da pilha
 	*/
-	myPilha(const int &my_size) : tamanho(0), capacidade(my_size) //pilha (new int[capacidade]);
+	myPilha(const myPilha &my_stack)
+		: tamanho(my_stack.tamanho), capacidade(my_stack.capacidade), pilha(new T[capacidade])
 	{
-		pilha = new T[capacidade];
+		// Copia elementos da pilha passa por argumento para a pilha a ser criada
+		for (int i = 0; i < capacidade; ++i)
+		{
+			this->pilha[i] = my_stack.pilha[i];
+		}
+		
 	}
 	
 	// ================================================ Destrutor

@@ -28,10 +28,9 @@
 int main(int argc, char const *argv[])
 {
 	// Criando pilhas
-	cout << "Creating stacks A, B and C..."; 
+	cout << "Creating stacks A, B..."; 
 	myPilha<int> A;	// capacidade: padrão (2)
-	myPilha<char> B(3);	// capacidade: 3
-//	myPilha<myPilha<int>> C;
+	myPilha<char> B;	// capacidade: padrão (2)
 	cout << "Done" << endl;
 
 	// Testes com pilhas vazias
@@ -60,12 +59,26 @@ int main(int argc, char const *argv[])
 	B.push('b');
 	cout << "B's top element is " << B.top() << endl;
 	cout << "Current size:" << B.size() << endl;
-	B.push('b');
 
 	cout << "-" << endl;
 
+	// Testanto Construtor myPilha(myPilha)
+	cout << "Creating stacks C from stack A..."; 
+	myPilha<int> C(A);
+
 	// Testando pop
 	cout << "Testing pop():" << endl;
+	for (int i = 0; i <= C.size(); ++i)
+	{
+		cout << "C's top element is " << C.top() << endl;
+		cout << "Current size:" << C.size() << endl;
+		C.pop();
+		cout << "popping.." << endl;
+	}
+
+	cout << endl;
+
+	// Testando pop
 	for (int i = 0; i < 2; ++i)
 	{
 		cout << "A's top element is " << A.top() << endl;
@@ -74,10 +87,6 @@ int main(int argc, char const *argv[])
 		cout << "popping.." << endl;
 	}
 
-//	C.push(A);
-	//C.push(myPilha<int>(40));
-
-
-
+	cout << "Fim." << endl;
 	return 0;
 }
