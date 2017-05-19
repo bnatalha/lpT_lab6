@@ -16,7 +16,7 @@ INC =-I include
 # - - - - - - - - - - - - - - - - - - - -
 # - - ----------- TARGETS ----------- - -
 # - - - - - - - - - - - - - - - - - - - -
-#
+
 # ================ PHONY =================
 .PHONY: all init val clean docs test vai
 
@@ -40,9 +40,17 @@ docs: Doxyfile
 val1:
 	valgrind --leak-check=yes bin/Programa_1
 
+# Runs valgrind with 'bin/Programa_2'
+val1:
+	valgrind --leak-check=yes bin/Programa_2
+
 # ============== EXECUTABLES ==============
 # For Programa_1:
 bin/Programa_1: bin/main_1.o bin/palindromo.o
+	g++ $^ -o $@
+
+# For Programa_2:
+bin/Programa_2: bin/main_2.o
 	g++ $^ -o $@
 
 # ================ OBJECTS ================
@@ -50,9 +58,12 @@ bin/Programa_1: bin/main_1.o bin/palindromo.o
 bin/main_1.o: src/Programa_1/main_1.cpp
 	g++ $(CPPFLAGS) $< $(INC)/Programa_1 -c -o $@
 
-# Precisa colocar a pilha aqui?
 bin/palindromo.o: src/Programa_1/palindromo.cpp
 	g++ $(CPPFLAGS) $< $(INC)/Programa_1 -c -o $@
+
+# For Programa_2:
+bin/main_2.o: src/Programa_2/main_2.cpp
+	g++ $(CPPFLAGS) $< $(INC)/Programa_2 -c -o $@
 
 # ================ CLEANER ================
 # Removes objects
