@@ -69,9 +69,6 @@ class myPilha
 	void push(const T& element);	/**< Acrescenta um elemento no topo da pilha, aumentando o tamanho da pilha */
 	void pop();	/**< Remove o elemento do topo da pilha, diminuindo o tamanho da pilha */
 
-
-
-
 };
 
 // Implementação

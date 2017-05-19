@@ -1,5 +1,5 @@
 /**
-* @brief Onde fica a definição das bibliotecas, variáveis e aliases comuns a maioria das implementações
+* @brief Bibliotecas, variáveis e aliases comuns a maioria das implementações em Programa_1
 * @author Natália Azevedo de Brito (https://github.com/bnatalha/)
 * @since 14/05/2017
 * @date 15/05/2017
