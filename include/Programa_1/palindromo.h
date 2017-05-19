@@ -1,9 +1,9 @@
 /**
+* @file
 * @brief Assinaturas das funções que ajudam a verificar se uma frase é palíndromo
 * @author Natália Azevedo de Brito (https://github.com/bnatalha/)
 * @since 19/05/2017
-* @date 15/05/2017
-* @sa http://www.cplusplus.com/ , http://en.cppreference.com/ 
+* @date 19/05/2017
 */
 
 #ifndef PALINDROMO_H

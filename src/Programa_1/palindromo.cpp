@@ -1,9 +1,9 @@
 /**
+* @file
 * @brief Implementações das funções em palindromo.h
 * @author Natália Azevedo de Brito (https://github.com/bnatalha/)
 * @since 19/05/2017
-* @date --/05/2017
-* @sa http://www.cplusplus.com/ , http://en.cppreference.com/ 
+* @date 19/05/2017
 */
 
 #include "palindromo.h"
@@ -37,8 +37,8 @@ bool dontMatter(char c){
 */
 void limpaString(string *suja){
 	
-	int slow = 0;	/**< Indice lento */
-	int fast = 0;	/**< Indice rápido */
+	int slow = 0;	// Indice lento
+	int fast = 0;	// Indice rápido
 
 	while( suja[0][fast] != '\0' )	// Enquanto não chegar no fim da string
 	{
@@ -60,8 +60,8 @@ void limpaString(string *suja){
 */
 bool palindromo(string &s){
 	
-	myPilha<char> A;	/**< Pilha que guardará a primeira metade de 's' */
-	myPilha<char> B;	/**< Pilha que guardará a segunda metade de 's' */
+	myPilha<char> A;	// Pilha que guardará a primeira metade de 's'
+	myPilha<char> B;	// Pilha que guardará a segunda metade de 's'
 
 	// Preenchendo pilhas...
 	for (auto i (0u); i < s.size()/2; ++i) // O(n/2)
@@ -72,7 +72,7 @@ bool palindromo(string &s){
 	}
 
 	// Verificando conteúdo das pilhas...
-	for (auto i(0u); i < s.size()/2; ++i)	// !! poderia ser até A.empty()
+	for (auto i(0u); i < s.size()/2; ++i)	// (?) poderia ser até A.empty()
 	{
 		if ( sameValue ( A.top(), B.top() ) == false ) return false;	// Se encontrar algum par de letras que  não sejam iguauis, retorna falso
 		else // Se os topos de A e B forem iguais, ainda pode ser palíndromo
@@ -83,4 +83,4 @@ bool palindromo(string &s){
 	}
 	return true;
 
-}	// !! Poderia ter feito uma pilha de pares de char
+}	// (!) Poderia ter feito uma pilha de pares de char

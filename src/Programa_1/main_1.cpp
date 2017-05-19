@@ -1,12 +1,12 @@
 /**
+* @file
 * @brief Implementação da função principal de Programa_1
 * @author Natália Azevedo de Brito (https://github.com/bnatalha/)
 * @since 14/05/2017
-* @date 15/05/2017
-* @sa http://www.cplusplus.com/ , http://en.cppreference.com/ 
+* @date 19/05/2017
 */
 
-#include "header.h"
+#include "header_1.h"
 #include "myPilha.h"
 #include "palindromo.h"
 
@@ -22,7 +22,7 @@ int main(int argc, char const *argv[])
 	cout << "Strings exemplo: \"" 
 		<< exemplo1 << "\", \"" << exemplo2 << "\" e \"" << exemplo3 << "\"." << endl;
 	
-	// !EXTRA! Corrigir para ser passagem por referência para 'limpaString'
+	// EXTRA! Corrigir para ser passagem por referência para 'limpaString'
 	cout << "Tratando as strings 'exemplo'...";
 	limpaString(&exemplo1);
 	limpaString(&exemplo2);

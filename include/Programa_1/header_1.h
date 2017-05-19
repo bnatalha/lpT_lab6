@@ -1,12 +1,13 @@
 /**
+* @file
 * @brief Bibliotecas, variáveis e aliases comuns a maioria das implementações em Programa_1
 * @author Natália Azevedo de Brito (https://github.com/bnatalha/)
 * @since 14/05/2017
-* @date 15/05/2017
+* @date 19/05/2017
 */
 
-#ifndef HEADER_H_1
-#define HEADER_H_1
+#ifndef HEADER_1_H
+#define HEADER_1_H
 
 #include <iostream>
 

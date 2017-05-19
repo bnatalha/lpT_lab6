@@ -47,7 +47,7 @@ bin/Programa_1: bin/main_1.o bin/palindromo.o
 
 # ================ OBJECTS ================
 # For Programa_1:
-bin/main_1.o: src/Programa_1/main.cpp
+bin/main_1.o: src/Programa_1/main_1.cpp
 	g++ $(CPPFLAGS) $< $(INC)/Programa_1 -c -o $@
 
 # Precisa colocar a pilha aqui?
