@@ -8,6 +8,7 @@
 template < typename T>
 T& myLista<T>::front()
 {
+	// exceção caso lista esteja vazia (?)
 	return (sentinela_head->elemento);
 }
 
@@ -18,6 +19,7 @@ T& myLista<T>::front()
 template < typename T>
 T& myLista<T>::back()
 {
+	// exceção caso lista esteja vazia (?)
 	return (sentinela_tail->elemento);
 }
 #endif

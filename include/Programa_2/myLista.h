@@ -1,6 +1,6 @@
 /**
 * @file
-* @brief Definição e implementação de myLista
+* @brief Definição de myLista e implemnetação das sobrecargas de operadores dela
 * @author Natália Azevedo de Brito (https://github.com/bnatalha/)
 * @since 14/05/2017
 * @date 19/05/2017
@@ -53,7 +53,7 @@ class myLista
 		myLista();
 		myLista( const myLista & copy );
 		// range
-		// fill
+		myLista(const int& n, const T& val);	// fill
 		
 		// Destrutor
 		~myLista();
@@ -72,12 +72,12 @@ class myLista
 		void push_front( const T& elem );
 		bool pop_front();
 		void clear();
-		//erase()
-		//insert()
+		//erase()	iterator
+		//insert()	iterator
 
 		// Operações
 		//merge()	??
-		//remove()
+		void remove(const T& val);
 		//unique() ()usar nos modificadores
 		//sort()
 
@@ -86,17 +86,22 @@ class myLista
 		// PARA TESTE: sobrecarga operador <<
 		template <typename foo>
 		friend std::ostream& operator<< (std::ostream& out, const myLista<foo> lista);
-
 };
 
-// Sobrecargas
+// Implementação de Sobrecargas
+
+
+/**
+* @brief	Sobrecarga do operador "="
+* @param copy Lista a ser copiada
+*/
 template <typename T>
 myLista<T>& myLista<T>::operator= (const myLista<T> copy)
 {
 	// EXTRA !: checar se listas são iguais (operator ==) antes da atribuição
 	clear();	// Destroi os elementos da lista que vai ser modificada
 	
-	myNode *_pointer = copy.sentinela_head;	// Cria um ponteiro não constante para o início da lista
+	myNode *_pointer = copy.sentinela_head;	// Cria um ponteiro não constante para o início da lista a ser copiada
 	while( _pointer != NULL )	// Enquanto ponteiro não chegar no fim da lista a ser copiada (NULL)
 	{
 		push_back(_pointer->elemento);	// Acrescenta o elemento do nó da vez ao fim desta lista
@@ -106,7 +111,12 @@ myLista<T>& myLista<T>::operator= (const myLista<T> copy)
 	return *this;
 }
 
-//http://stackoverflow.com/questions/610245/
+/**
+* @brief	Sobrecarga do operador "="
+* @param copy Lista a ser copiada
+* @sa Declarar dependent name pa
+*/
+//
 template <typename foo>
 std::ostream& operator<< (std::ostream& out, const myLista<foo> lista)
 {
@@ -115,7 +125,7 @@ std::ostream& operator<< (std::ostream& out, const myLista<foo> lista)
 	out << "[ ";
 	while( _pointer != NULL )
 	{
-		out << _pointer->elemento << " ";
+		out << _pointer->elemento << (_pointer->proximo == NULL ? " ": ", ");
 		_pointer = _pointer->proximo;
 	}
 	out << "]";
