@@ -4,7 +4,7 @@
 * @author Natália Azevedo de Brito (https://github.com/bnatalha/)
 * @since 14/05/2017
 * @date 19/05/2017
-* @sa std::stack (http://www.cplusplus.com/reference/stack/stack/)
+* @sa std::stack (http://www.cplusplus.com/reference/stack/stack/, http://en.cppreference.com/w/cpp/container/list)
 */
 
 #ifndef MYLISTA_H
@@ -13,57 +13,77 @@
 #include "header_2.h"
 
 /**
-* @class myPilha
-* @brief classe criada para simular a classe std::stack da STL do C++
-* @tparam T Tipo dos elementos da pilha
+* @class myLista
+* @brief Classe criada para simular a classe std::list da STL do C++
+* @tparam T Tipo dos elementos da lista
 */
 template < typename T >
 class myLista
 {
 	private:
 
-		static const int capacidade = 50;	/**< Capacidade padrão de todas as pilhas */
+		/**
+		* @struct myNode
+		* @brief Estrutura que define um nó dá lista
+		*/
+		struct myNode
+		{
+			T elemento;	/**< Elemento que o nó guarda */
+			myNode* anterior; /**< Ponteiro para o nó anterior (no sentido do início) da lista */
+			myNode* proximo; /**< Ponteiro para o próximo nó (no sentido do fim) da lista */
+
+			/**
+			* @brief Construtor de myNode
+			*/
+			myNode(const T& data, myNode* prevNode = NULL, myNode* nextNode = NULL)
+				:	elemento(data), anterior(prevNode), proximo(nextNode)
+			{}
+		};
+
+		myNode *sentinela_head;	/**< Ponteiro para o nó do início (head) da lista */
+		myNode *sentinela_tail;	/**< Ponteiro para o nó do fim (tail) da lista */
+		int qtd_elementos;	/**< A quantidade de elementos armazenados na lista */
 
 	public:
 
-		// Construtores
-
-		/**
-		* @brief Constroi um objeto myPilha sem passar atributos.
-		*/
-		myLista()
-			: tamanho(0), pilha(new T[capacidade])
-		{}
+		// Construtor
+		myLista();
 		
 		// Destrutor
+		~myLista();
 
-		/**
-		* @brief Desaloca 'pilha' após chamar o destrutor de seus respectivos elementos
-		*/
-		~myLista()
-		{
-			delete[] pilha;
-		}
+		// Acesso a elementos
+		T& front();
+		//back()
+		
+		// Capacidade
+		int size();
+		bool empty();
 
-		// Metodos
+		// Modificadores
+		void push_back( const T& elem );	// bool se tiver como checar se pode ser alocado ou não
+		bool pop_back();
+		//push_front()
+		//pop_front()
+		void clear();
+		//erase()
+		//insert()
 
-		bool empty();	/**< Verifica se a pilha está vazia */
-		int& size();	/**< Retorna uma referência para o tamanho da pilha */
-		T& top();	/**< Retorna uma referência para elemento no topo da pilha */
-		void push(const T& element);	/**< Acrescenta um elemento no topo da pilha, aumentando o tamanho da pilha */
-		void pop();	/**< Remove o elemento do topo da pilha, diminuindo o tamanho da pilha */
+		// Operações
+		//merge()	??
+		//remove()
+		//unique() ()usar nos modificadores
+		//sort()
 
+		// sobrecarga operador=
 };
 
-// Implementações de myLista
-
-/**
-* @retval true A lista está vazia
-* @retval false A lista \b não está vazia
-*/
-template <typename T >
-bool myLista<T>::empty()
-{}
-
+#include "myLista_0_Iterator.h"
+#include "myLista_1_Construtor.h"
+#include "myLista_2_Destrutor.h"
+#include "myLista_3_Acess.h"
+#include "myLista_4_Capacity.h"
+#include "myLista_5_Modifiers.h"
+#include "myLista_6_Operations.h"
 
 #endif

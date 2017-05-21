@@ -22,7 +22,7 @@ INC =-I include
 
 # ================= ALL ==================
 # Creates everything that is needed in order to compile, compiles and then deletes the .o files
-all: init bin/Programa_1 clean
+all: init bin/Programa_2 clean
 
 # Creates the 'bin' folder at the current directory if there's no other folder with this name on it.
 init:
@@ -41,7 +41,7 @@ val1:
 	valgrind --leak-check=yes bin/Programa_1
 
 # Runs valgrind with 'bin/Programa_2'
-val1:
+val2:
 	valgrind --leak-check=yes bin/Programa_2
 
 # ============== EXECUTABLES ==============
