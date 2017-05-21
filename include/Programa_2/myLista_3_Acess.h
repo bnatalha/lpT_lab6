@@ -11,4 +11,13 @@ T& myLista<T>::front()
 	return (sentinela_head->elemento);
 }
 
+/**
+* @brief Acessa o elemento no último nó da lista
+* @return O elemento do nó apontado pela cauda;
+*/
+template < typename T>
+T& myLista<T>::back()
+{
+	return (sentinela_tail->elemento);
+}
 #endif

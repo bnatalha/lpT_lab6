@@ -1,0 +1,83 @@
+Creating Lists... Done
+A.size(): 0
+A.empty(): true
+
+> A.push_back(3) 
+> A.push_back(2) 
+> A.push_back(1) 
+> A.push_back(0) 
+> A.push_front(4) 
+> A.push_front(5) 
+
+A.front(): 5
+A.back(): 0
+
+Creating List B as a copy of A... Done
+myLista: [ 5 4 3 2 1 0 ]
+
+B.size(): 6
+B.empty(): false
+B.front(): 5
+B.back(): 0
+
+- Popping_back B- 
+B.front(): 5
+B.back(): 0
+B.pop_back(): true
+--
+B.front(): 5
+B.back(): 1
+B.pop_back(): true
+--
+B.front(): 5
+B.back(): 2
+B.pop_back(): true
+--
+B.front(): 5
+B.back(): 3
+B.pop_back(): true
+--
+B.front(): 5
+B.back(): 4
+B.pop_back(): true
+--
+B.front(): 5
+B.back(): 5
+B.pop_back(): true
+--
+-B- 
+
+- Popping_front A- 
+A.front(): 5
+A.back(): 0
+A.pop_front(): true
+--
+A.front(): 4
+A.back(): 0
+A.pop_front(): true
+--
+A.front(): 3
+A.back(): 0
+A.pop_front(): true
+--
+A.front(): 2
+A.back(): 0
+A.pop_front(): true
+--
+A.front(): 1
+A.back(): 0
+A.pop_front(): true
+--
+A.front(): 0
+A.back(): 0
+A.pop_front(): true
+--
+-A- 
+
+> B.push_front(0) 
+B.front(): 0
+B.back(): 0
+> B.push_front(1) 
+B.front(): 1
+B.back(): 0
+Fim.

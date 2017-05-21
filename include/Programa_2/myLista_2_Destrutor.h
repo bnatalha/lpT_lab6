@@ -2,7 +2,7 @@
 #define MYLISTA_2_H
 
 /**
-* @brief Destroi a lista, desalocando os elementos nela presentes.
+* @brief Destroi a lista, destruindo seus elementos.
 */
 template < typename T>
 myLista<T>::~myLista()

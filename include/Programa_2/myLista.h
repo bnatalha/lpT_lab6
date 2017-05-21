@@ -11,6 +11,8 @@
 #define MYLISTA_H
 
 #include "header_2.h"
+#include <ostream>
+
 
 /**
 * @class myLista
@@ -45,16 +47,20 @@ class myLista
 		int qtd_elementos;	/**< A quantidade de elementos armazenados na lista */
 
 	public:
+		
 
 		// Construtor
 		myLista();
+		myLista( const myLista & copy );
+		// range
+		// fill
 		
 		// Destrutor
 		~myLista();
 
 		// Acesso a elementos
 		T& front();
-		//back()
+		T& back();
 		
 		// Capacidade
 		int size();
@@ -63,8 +69,8 @@ class myLista
 		// Modificadores
 		void push_back( const T& elem );	// bool se tiver como checar se pode ser alocado ou não
 		bool pop_back();
-		//push_front()
-		//pop_front()
+		void push_front( const T& elem );
+		bool pop_front();
 		void clear();
 		//erase()
 		//insert()
@@ -75,8 +81,47 @@ class myLista
 		//unique() ()usar nos modificadores
 		//sort()
 
-		// sobrecarga operador=
+		// Sobrecarga de operadores
+		myLista<T>& operator= (const myLista<T> copy);
+		// PARA TESTE: sobrecarga operador <<
+		template <typename foo>
+		friend std::ostream& operator<< (std::ostream& out, const myLista<foo> lista);
+
 };
+
+// Sobrecargas
+template <typename T>
+myLista<T>& myLista<T>::operator= (const myLista<T> copy)
+{
+	// EXTRA !: checar se listas são iguais (operator ==) antes da atribuição
+	clear();	// Destroi os elementos da lista que vai ser modificada
+	
+	myNode *_pointer = copy.sentinela_head;	// Cria um ponteiro não constante para o início da lista
+	while( _pointer != NULL )	// Enquanto ponteiro não chegar no fim da lista a ser copiada (NULL)
+	{
+		push_back(_pointer->elemento);	// Acrescenta o elemento do nó da vez ao fim desta lista
+		_pointer = _pointer->proximo;	// Ponteiro anda no sentido do fim da lista a ser copida
+	}
+
+	return *this;
+}
+
+//http://stackoverflow.com/questions/610245/
+template <typename foo>
+std::ostream& operator<< (std::ostream& out, const myLista<foo> lista)
+{
+	typename myLista<foo>::myNode *_pointer = lista.sentinela_head;
+
+	out << "[ ";
+	while( _pointer != NULL )
+	{
+		out << _pointer->elemento << " ";
+		_pointer = _pointer->proximo;
+	}
+	out << "]";
+
+	return out;
+}
 
 #include "myLista_0_Iterator.h"
 #include "myLista_1_Construtor.h"
