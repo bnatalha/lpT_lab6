@@ -22,7 +22,7 @@ INC =-I include
 
 # ================= ALL ==================
 # Creates everything that is needed in order to compile, compiles and then deletes the .o files
-all: init bin/Programa_2 clean
+all: init bin/Programa_1 bin/Programa_2 clean
 
 # Creates the 'bin' folder at the current directory if there's no other folder with this name on it.
 init:

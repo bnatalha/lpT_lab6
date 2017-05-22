@@ -1,3 +1,12 @@
+/**
+* @file
+* @brief Implementação dos métodos remove() e existent_element() de myPilha
+* @author Natália Azevedo de Brito (https://github.com/bnatalha/)
+* @since 14/05/2017
+* @date 21/05/2017
+* @sa std::stack (http://www.cplusplus.com/reference/stack/stack/, http://en.cppreference.com/w/cpp/container/list)
+*/
+
 #ifndef MYLISTA_6_H
 #define MYLISTA_6_H
 
@@ -64,6 +73,24 @@ void myLista<T>::remove(const T& val)
 			_pointer = _pointer->proximo;	// Avança o ponteiro;
 		}
 	}
+}
+
+/**
+* @brief Verifica se um elemento já existe na lista
+* @param elem Valor buscado para ser removido
+*/
+template < typename T>
+bool myLista<T>::existent_element(const T& elem)
+{
+	myNode * _pointer = sentinela_head;	// Cria ponteiro para o início da lista, a partir da sentinela da cabeça
+
+	while(_pointer != NULL)	// Percorre toda a lista
+	{
+		if(_pointer->elemento == elem) return true;	// Se encontrar o valor, retorna true
+		_pointer = _pointer->proximo;	// Avança para o próximo nó em direção a cauda da lista
+	}
+
+	return false;	// Se não encontrar o valor, retorna falso
 }
 
 #endif

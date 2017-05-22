@@ -3,7 +3,7 @@
 * @brief Definição de myLista e implemnetação das sobrecargas de operadores dela
 * @author Natália Azevedo de Brito (https://github.com/bnatalha/)
 * @since 14/05/2017
-* @date 19/05/2017
+* @date 21/05/2017
 * @sa std::stack (http://www.cplusplus.com/reference/stack/stack/, http://en.cppreference.com/w/cpp/container/list)
 */
 
@@ -13,10 +13,10 @@
 #include "header_2.h"
 #include <ostream>
 
-
 /**
 * @class myLista
-* @brief Classe criada para simular a classe std::list da STL do C++
+* @brief Classe criada para simular a classe std::list da STL do C++, só que já ordenada 
+* (neste exemplo, na ordem decrescente)
 * @tparam T Tipo dos elementos da lista
 */
 template < typename T >
@@ -47,13 +47,13 @@ class myLista
 		int qtd_elementos;	/**< A quantidade de elementos armazenados na lista */
 
 	public:
-		
+		// Iterador (Não foi feito)
 
 		// Construtor
 		myLista();
 		myLista( const myLista & copy );
 		// range
-		myLista(const int& n, const T& val);	// fill
+		myLista(const int& n, const T& val);	// Invalidado pela nova implementação dos metodos push (só entra algum elemento na lista caso ele ainda não exista nela)
 		
 		// Destrutor
 		~myLista();
@@ -67,6 +67,8 @@ class myLista
 		bool empty();
 
 		// Modificadores
+		void push_sorted(const T& elem );
+		//void pop_sorted();
 		void push_back( const T& elem );	// bool se tiver como checar se pode ser alocado ou não
 		bool pop_back();
 		void push_front( const T& elem );
@@ -76,16 +78,16 @@ class myLista
 		//insert()	iterator
 
 		// Operações
-		//merge()	??
 		void remove(const T& val);
-		//unique() ()usar nos modificadores
-		//sort()
+		// > Auxiliares dos modificadores
+		bool existent_element(const T& elem);
+		//sort();
 
 		// Sobrecarga de operadores
 		myLista<T>& operator= (const myLista<T> copy);
 		// PARA TESTE: sobrecarga operador <<
 		template <typename foo>
-		friend std::ostream& operator<< (std::ostream& out, const myLista<foo> lista);
+		friend std::ostream& operator<< (std::ostream& out, const myLista<foo> copy);
 };
 
 // Implementação de Sobrecargas
@@ -113,14 +115,14 @@ myLista<T>& myLista<T>::operator= (const myLista<T> copy)
 
 /**
 * @brief	Sobrecarga do operador "="
-* @param copy Lista a ser copiada
-* @sa Declarar dependent name pa
+* @param copy lista a ser copiada
+* @param out ostream a ser usada
+* @sa Explicação para uso do typename dentro da função em http://stackoverflow.com/questions/610245/
 */
-//
 template <typename foo>
-std::ostream& operator<< (std::ostream& out, const myLista<foo> lista)
+std::ostream& operator<< (std::ostream& out, const myLista<foo> copy)
 {
-	typename myLista<foo>::myNode *_pointer = lista.sentinela_head;
+	typename myLista<foo>::myNode *_pointer = lista.sentinela_head;	// Ponteiro para o primeiro nó da lista
 
 	out << "[ ";
 	while( _pointer != NULL )

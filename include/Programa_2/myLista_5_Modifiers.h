@@ -1,3 +1,12 @@
+/**
+* @file
+* @brief Implementação dos métodos clear(), push_'s(), pop's() de myPilha
+* @author Natália Azevedo de Brito (https://github.com/bnatalha/)
+* @since 14/05/2017
+* @date 21/05/2017
+* @sa std::stack (http://www.cplusplus.com/reference/stack/stack/, http://en.cppreference.com/w/cpp/container/list)
+*/
+
 #ifndef MYLISTA_5_H
 #define MYLISTA_5_H
 
@@ -14,23 +23,82 @@ void myLista<T>::clear()
 }
 
 /**
+* @brief Adiciona um elemento a lista respeitando a ordem DECRESCENTE (Tem comportamento inesperado se a lista não estiver nesta ordem)
+* @param elem Elemento a ser adicionado ao início da lista
+*/
+template < typename T>
+void myLista<T>::push_sorted( const T& elem )
+{
+	if( existent_element(elem) == false )	// Se o elemento a ser acrescentado na lista não já pertencer à ela
+	{
+		myNode *new_node = new myNode(elem);	// Cria um novo nó dinamicamente com o elemento a ser adicionado
+
+		if ( empty() )	 // Se for o primeiro nó da lista (sentinelas não contam)
+		{
+			sentinela_tail = new_node;	// O nó criado agora é o ultimo da lista	
+			sentinela_head = new_node;	// O nó criado agora também é o primeiro da lista	
+
+			qtd_elementos++;	// Total de elementos da lista aumenta	
+		}
+		
+		else // Se já existir algum elemento na lista
+		{
+			if(elem > sentinela_head->elemento)	// Se o elemento a ser acrescentado for maior do que o que está na frente da lista
+			{
+				delete new_node;	// Não vai ser mais necessário onó criado graças as função push_front()
+				push_front(elem);	// Coloca o elemento na frente da Lista [Vai checar novamente se 'elem' já existe na lista..]
+			}
+			else if(sentinela_tail->elemento > elem)	// Se o elemento do fim da lista for maior do que o que vai ser acrescentado
+			{
+				delete new_node;	// Não vai ser mais necessário onó criado graças as função push_back()
+				push_back(elem);	// Coloca o elemento no final da lista
+			}
+			else if(sentinela_head->elemento > elem and sentinela_tail->elemento < elem )	// else
+			{
+				myNode *_pointer = NULL;	// Cria um ponteiro para nós
+
+				_pointer = sentinela_head;	// Atribui a _pointer um ponteiro para o primeiro nó da lista
+
+				while(elem < _pointer->elemento)	// Até encontrar um nó com um elemento que seja menor do que o que será acrescentado a lista
+					_pointer = _pointer->proximo;	// Avança o _pointer em direção a fim da lista 
+
+				// Associa o new_node com os nós proximos a ele
+				// Situação inicial: [elem]	[_p-1]-[_p]
+				new_node->proximo = _pointer;	// [elem]->[_p] | [_p-1]-[_p]
+				new_node->anterior = _pointer->anterior;	// [_p-1]<-[elem]->[_p] | [_p-1]-[_p]
+				// Coloca new_node entre os elementos _pointer->anterior e _pointer
+				_pointer->anterior->proximo = new_node;	// [_p-1]-[elem] | [_p-1]<-[_p]
+				_pointer->anterior = new_node;	// [_p-1]-[elem]-[_p]
+
+				qtd_elementos++;	// Total de elementos da lista aumenta	
+			}
+		}
+	}
+}
+
+/**
 * @brief Adiciona um elemento ao fim da lista
 * @param elem Elemento a ser adicionado ao fim da lista
 */
 template < typename T>
 void myLista<T>::push_back( const T& elem )
 {
-	myNode *new_node = new myNode(elem, sentinela_tail);	// Cria um novo nó dinamicamente com o elemento adicionado, com o anterior dele sendo o último atual (apontado pela cauda)
+	if( existent_element(elem) == false )	// Se o elemento a ser acrescentado na lista não já pertencer à ela
+	{
+		myNode *new_node = new myNode(elem, sentinela_tail);	// Cria um novo nó dinamicamente com o elemento adicionado, com o anterior dele sendo o último atual (apontado pela cauda)
 
-	if ( empty() ) // Se for o primeiro nó da lista (sentinelas não contam)
-		sentinela_head = new_node;	// O nó criado agora é o primeiro da lista	
-	
-	else // Se já existir algum elemento na lista
-		sentinela_tail->proximo = new_node;	// Faz com que o ultimo nó da lista aponte para o nó criado
+		if ( empty() ) // Se for o primeiro nó da lista (sentinelas não contam)
+			sentinela_head = new_node;	// O nó criado agora é o primeiro da lista	
+		
+		else // Se já existir algum elemento na lista
+			sentinela_tail->proximo = new_node;	// Faz com que o ultimo nó da lista aponte para o nó criado
 
-	sentinela_tail = new_node;	// O nó criado agora é o ultimo da lista
+		sentinela_tail = new_node;	// O nó criado agora é o ultimo da lista
 
-	qtd_elementos++;	// Total de elementos da lista aumenta	
+		qtd_elementos++;	// Total de elementos da lista aumenta	
+	}
+	else
+		cout << "O elemento '" << elem << "' já existe na lista." << endl;
 }
 
 /**
@@ -71,17 +139,20 @@ bool myLista<T>::pop_back()
 template < typename T>
 void myLista<T>::push_front( const T& elem )
 {
-	myNode *new_node = new myNode(elem, NULL, sentinela_head);	// Cria um novo nó dinamicamente com o elemento adicionado, com o próximo dele sendo o primeiro atual (apontado pela cabeça)
+	if( existent_element(elem) == false )	// Se o elemento a ser acrescentado na lista não já pertencer à ela
+	{
+		myNode *new_node = new myNode(elem, NULL, sentinela_head);	// Cria um novo nó dinamicamente com o elemento adicionado, com o próximo dele sendo o primeiro atual (apontado pela cabeça)
 
-	if ( empty() ) // Se for o primeiro nó da lista (sentinelas não contam)
-		sentinela_tail = new_node;	// O nó criado agora é o primeiro da lista	
-	
-	else // Se já existir algum elemento na lista
-		sentinela_head->anterior = new_node;	// O primeiro nó da lista agora tem um nó anterior: O nó criado
+		if ( empty() ) // Se for o primeiro nó da lista (sentinelas não contam)
+			sentinela_tail = new_node;	// O nó criado agora é o primeiro da lista	
+		
+		else // Se já existir algum elemento na lista
+			sentinela_head->anterior = new_node;	// O primeiro nó da lista agora tem um nó anterior: O nó criado
 
-	sentinela_head = new_node;	// O nó criado é o novo primeiro nó da lista
+		sentinela_head = new_node;	// O nó criado é o novo primeiro nó da lista
 
-	qtd_elementos++;	// Total de elementos da lista aumenta	
+		qtd_elementos++;	// Total de elementos da lista aumenta	
+	}
 }
 
 /**

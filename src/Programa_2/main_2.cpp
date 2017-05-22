@@ -3,7 +3,7 @@
 * @brief Implementação da função principal de Programa_2
 * @author Natália Azevedo de Brito (https://github.com/bnatalha/)
 * @since 19/05/2017
-* @date --/05/2017
+* @date 21/05/2017
 * @sa std::list (http://www.cplusplus.com/reference/list/list/)
 */
 
@@ -22,10 +22,12 @@ ordenada implica em alterações apenas na inserção e eliminação dos itens.
 */
 int main(int argc, char const *argv[])
 {
-	// Testando construtor del ista vazia
+
+	// Lista não aceita elementos repitidos.
+	// Testando construtor de lista vazia
 	cout << "Creating Lists... ";
 	myLista<int> A;	// [] (vazia)
-	myLista<char> C(4,'N');	// [N,N,N,N]
+	myLista<char> C(1,'N');	// [N]
 	cout << "Done"
 		<< " A = " << A << ", C = " << C << endl << endl;
 
@@ -38,11 +40,11 @@ int main(int argc, char const *argv[])
 	cout << endl << "> A.push_back(3) ";
 	A.push_back(3);
 	cout << "> A.push_back(2) ";
-	A.push_back(2);
+	A.push_back(7);
 	cout << "> A.push_back(1) ";
-	A.push_back(1);
+	A.push_back(9);
 	cout << "> A.push_back(0) ";
-	A.push_back(0);
+	A.push_back(8);
 	cout << "> A.push_front(4) ";
 	A.push_front(4);
 	cout << "> A.push_front(5)" << endl;
@@ -84,50 +86,65 @@ int main(int argc, char const *argv[])
 	B.push_front(0);
 	cout << " B.front(): " << B.front()
 		<< " B.back(): " << B.back() << endl;
-	cout << " > B.push_front(1) " << endl;
+	cout << "> B.push_front(1) ";
 	B.push_front(1);
 	cout << "B.front(): " << B.front()
 		<< " B.back(): " << B.back() << endl << endl;
 
 	// Testando operador =
-	cout << "Before assigning: A =" << A << ", B=" << B << endl;
+	cout << "Before assigning: A = " << A << ", B = " << B << endl;
+	cout << "Assigning A = B...";
 	B = A;
-	cout << "After A = B : A =" << A << ", B=" << B << endl;
+	cout << "Done. A = " << A << ", B = " << B << endl;
 
 	//cout << A.front() << endl;	// lista vazia, segmentation fault
 
 	// Testando remove()
 	cout << "Testing remove..." << endl;
 	B.push_front(6);
-	cout << "B = " << B << endl;
+	cout << "B = " << B << endl;	// [ 6 ]
 	B.remove(6);
-	cout << "B = " << B << endl;
+	cout << "B = " << B << endl;	// [ ]
 
 	B.push_front(7);
 	B.push_front(7);
 	B.push_front(7);
-	cout << "B = " << B << endl;
+	cout << "B = " << B << endl;	// [ 7 ]
 	B.remove(7);
-	cout << "B = " << B << endl;
+	cout << "B = " << B << endl;	// [ ]
 
-
-	C.push_front('c');	// a N....N
-	cout << "C = " << C << endl;
+	C.push_front('c');	
+	cout << "C = " << C << endl;	// [ c N ]
 	C.remove('c');
-	cout << "C = " << C << endl;
+	cout << "C = " << C << endl;	// [ N ]
 	
-	C.push_back('d');	// N....N a
-	cout << "C = " << C << endl;
+	C.push_back('d');	
+	cout << "C = " << C << endl;	// [ N d ]
 	C.remove('d');
-	cout << "C = " << C << endl;
+	cout << "C = " << C << endl;	// [ N ]
 	
-	C.push_back('e'); // f N...N b
+	C.push_back('e'); 
 	C.push_front('f');
-	cout << "C = " << C << endl;
+	cout << "C = " << C << endl;	// [ f N e ]
 	C.remove('N');
-	cout << "C = " << C << endl;
-	
+	cout << "C = " << C << endl;	// [ f e ]
 
+	// Testando unique() e push_sorted()
+	cout << "Testing and push_sorted()..." << endl;
+	B.push_sorted(5);
+	cout << "B = " << B << endl;	// [ 5 ]
+	B.push_sorted(3);
+	cout << "B = " << B << endl;	// [ 5 3 ]
+	B.push_sorted(10);
+	cout << "B = " << B << endl;	// [ 10 5 3 ]
+	B.push_sorted(3);
+	cout << "B = " << B << endl;	// [ 10 5 3 ]
+	B.push_sorted(7);
+	cout << "B = " << B << endl;	// [ 10 7 5 3 ]
+	B.push_sorted(0);
+	cout << "B = " << B << endl;	// [ 10 7 5 3 0 ]
+	B.push_sorted(6);
+	cout << "B = " << B << endl;	// [ 10 7 5 3 0 ]
 
 	cout << "Fim." << endl;
 	return 0;

@@ -39,7 +39,7 @@ class myPilha
 
 		/**
 		* @brief Constroi um objeto myPilha  partir de uma pilha já definida pelo usuário
-		* @param size Será a capacidade da pilha
+		* @param my_stack myPilha já existente que será sada pra construir a atual
 		*/
 		myPilha(const myPilha &my_stack)
 			: tamanho(my_stack.tamanho), pilha(new T[capacidade])
